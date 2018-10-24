@@ -34,6 +34,9 @@ func TestAccNetworkingV2_tags(t *testing.T) {
 					testAccCheckNetworkingV2Tags(
 						"openstack_networking_secgroup_v2.secgroup_1",
 						[]string{"a", "b", "c"}),
+					testAccCheckNetworkingV2Tags(
+						"openstack_networking_floatingip_v2.fip_1",
+						[]string{"a", "b", "c"}),
 				),
 			},
 			resource.TestStep{
@@ -56,6 +59,9 @@ func TestAccNetworkingV2_tags(t *testing.T) {
 						[]string{"a", "b", "c", "d"}),
 					testAccCheckNetworkingV2Tags(
 						"openstack_networking_secgroup_v2.secgroup_1",
+						[]string{"a", "b", "c", "d"}),
+					testAccCheckNetworkingV2Tags(
+						"openstack_networking_floatingip_v2.fip_1",
 						[]string{"a", "b", "c", "d"}),
 				),
 			},
@@ -124,6 +130,10 @@ resource "openstack_networking_secgroup_v2" "secgroup_1" {
   name = "security_group"
   description = "terraform security group acceptance test"
   tags = __TAGS__
+}
+
+resource "openstack_networking_floatingip_v2" "fip_1" {
+	    tags = __TAGS__
 }
 `
 
